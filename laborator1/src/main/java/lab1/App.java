@@ -3,6 +3,7 @@ package lab1;
 import java.util.Arrays;
 
 import compulsory.Compulsory;
+import homework.Homework;
 
 /**
 *
@@ -15,7 +16,8 @@ public class App
     public static void main( String[] args )
     {
         App app = new App();
-        app.compulsory();
+        //app.compulsory();
+        app.homework();
     }
 
     void compulsory()
@@ -35,6 +37,7 @@ public class App
         System.out.println(n);
 
         System.out.print("The number after operations is: ");
+        n = comp.operations(n);
         System.out.println(comp.operations(n));
 
         System.out.print("The digit is: ");
@@ -43,6 +46,20 @@ public class App
 
         System.out.print("Last message is: ");
         comp.message(n);
+    }
+
+    void homework()
+    {
+        Homework hw = new Homework();
+
+        System.out.print("The input number is : ");
+        int n = hw.input();
+
+        System.out.println("The Latin Square is :");
+        int [][] matrix = hw.latinSquare(n);
+
+        if(n <= 500)
+            hw.displayStringSmall(matrix, n);
     }
 
 }
