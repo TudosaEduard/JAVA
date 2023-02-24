@@ -2,6 +2,7 @@ package lab1;
 
 import java.util.Arrays;
 
+import bonus.Bonus;
 import compulsory.Compulsory;
 import homework.Homework;
 
@@ -15,16 +16,10 @@ public class App
 {
     public static void main( String[] args )
     {
-
-        //Get the jvm heap size.
-        long heapSize = Runtime.getRuntime().totalMemory();
-
-        //Print the jvm heap size.
-        System.out.println("Heap Size = " + heapSize);
-
         App app = new App();
-        //app.compulsory();
+        app.compulsory();
         app.homework(args);
+        app.bonus(args);
     }
 
     void compulsory()
@@ -62,12 +57,12 @@ public class App
 
         if(args.length > 0)
         {
-            System.out.print("The input number is : " + args[0]);
+            System.out.println("The input number is : " + args[0]);
             n = Integer.parseInt(args[0]);
         }
         else
         {
-            System.out.print("The input number is : ");
+            System.out.println("The input number is : ");
             n = hw.input();
         }
 
@@ -81,6 +76,12 @@ public class App
         }
         else
         {
+            //Get the jvm heap size.
+            long heapSize = Runtime.getRuntime().totalMemory();
+
+            //Print the jvm heap size.
+            System.out.println("Heap Size = " + heapSize);
+
             long startTime = System.nanoTime();
             
             int [][] matrix = hw.latinSquare(n);
@@ -88,6 +89,23 @@ public class App
             long endTime   = System.nanoTime();
             long totalTime = endTime - startTime;
             System.out.println("The time in nanoseconds for application is : " + totalTime);
+        }
+    }
+
+    void bonus(String[] args)
+    {
+        Bonus bn = new Bonus();
+        if(args.length == 1)
+            bn.cycleGraph(Integer.parseInt(args[0]));
+        else
+        {
+            int n = Integer.parseInt(args[0]);
+            int[] degree = new int[n + 1];
+
+            for(int k = 1 ; k <= n ; ++k)
+                degree[k - 1] = Integer.parseInt(args[k]);
+
+            bn.regularGraph(n, degree);
         }
     }
 
