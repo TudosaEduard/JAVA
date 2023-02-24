@@ -43,7 +43,6 @@ public class Homework {
             mat[ii][0] = mat[ii - 1][n - 1];
         }
 
-        afisareMat(mat, n);
         return mat;
     }
 
@@ -57,7 +56,7 @@ public class Homework {
         }
     }
 
-    public void displayStringSmall(int [][] mat, int n)
+    public void displayString(int [][] mat, int n)
     {
         System.out.println("Concatenate lines: ");
         for(int ii = 0 ; ii < n ; ++ii)
@@ -78,5 +77,6 @@ public class Homework {
         }
     }
 
-    //  java -XX:+PrintFlagsFinal -version | findstr HeapSize
+    //  java -XX:+PrintFlagsFinal -version | findstr HeapSize --> pentru a vedea memoria heap initiala, minima, maxima ... din JVM
+    //  
 }

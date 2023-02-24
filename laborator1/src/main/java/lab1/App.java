@@ -15,9 +15,16 @@ public class App
 {
     public static void main( String[] args )
     {
+
+        //Get the jvm heap size.
+        long heapSize = Runtime.getRuntime().totalMemory();
+
+        //Print the jvm heap size.
+        System.out.println("Heap Size = " + heapSize);
+
         App app = new App();
         //app.compulsory();
-        app.homework();
+        app.homework(args);
     }
 
     void compulsory()
@@ -48,18 +55,40 @@ public class App
         comp.message(n);
     }
 
-    void homework()
+    void homework(String[] args)
     {
         Homework hw = new Homework();
+        int n;
 
-        System.out.print("The input number is : ");
-        int n = hw.input();
+        if(args.length > 0)
+        {
+            System.out.print("The input number is : " + args[0]);
+            n = Integer.parseInt(args[0]);
+        }
+        else
+        {
+            System.out.print("The input number is : ");
+            n = hw.input();
+        }
 
-        System.out.println("The Latin Square is :");
-        int [][] matrix = hw.latinSquare(n);
-
-        if(n <= 500)
-            hw.displayStringSmall(matrix, n);
+        if(n <= 30000)
+        {
+            System.out.println("The Latin Square is :");
+            int [][] matrix = hw.latinSquare(n);
+            hw.afisareMat(matrix, n);
+            
+            hw.displayString(matrix, n);
+        }
+        else
+        {
+            long startTime = System.nanoTime();
+            
+            int [][] matrix = hw.latinSquare(n);
+            
+            long endTime   = System.nanoTime();
+            long totalTime = endTime - startTime;
+            System.out.println("The time in nanoseconds for application is : " + totalTime);
+        }
     }
 
 }
