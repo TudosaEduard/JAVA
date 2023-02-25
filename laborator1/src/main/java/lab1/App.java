@@ -104,8 +104,15 @@ public class App
 
             for(int k = 1 ; k <= n ; ++k)
                 degree[k - 1] = Integer.parseInt(args[k]);
-
-            bn.regularGraph(n, degree);
+            
+            boolean isRegular = true;
+            for(int k = 0 ; k < n - 1 ; ++k)
+                if(degree[k] != degree[k + 1])
+                    isRegular = false;
+            if(isRegular == true)
+                bn.regularGraph(n, degree);
+            else
+                System.out.println("The degree is not equal, so the graph can't be regular.");
         }
     }
 
