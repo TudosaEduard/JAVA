@@ -1,6 +1,7 @@
 package compulsory.objects;
 
 import compulsory.types.LocationType;
+import java.lang.Math;
 
 public class Location {
     
@@ -9,12 +10,7 @@ public class Location {
     private double x;
     private double y;
     
-    public Location() {
-        this.name = null;
-        this.type = null;
-        this.x = 0;
-        this.y = 0;
-    };
+    public Location() {};
 
     public Location(String name, double x, double y) {
         this.name = name;
