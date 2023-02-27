@@ -1,13 +1,22 @@
 package lab2;
 
+import compulsory.Compulsory;
+
 /**
- * Hello world!
  *
+ * @author Tudosa Eduard-Bogdan
  */
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        App app = new App();
+        app.compulsory();
+    }
+
+    void compulsory()
+    {
+        Compulsory comp = new Compulsory();
+        comp.main();
     }
 }
