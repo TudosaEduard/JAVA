@@ -12,7 +12,7 @@ public class App
     public static void main( String[] args )
     {
         App app = new App();
-        app.compulsory();
+        //app.compulsory();
         app.homework();
     }
 

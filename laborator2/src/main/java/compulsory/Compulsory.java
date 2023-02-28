@@ -9,6 +9,7 @@ import compulsory.types.LocationType;
 import compulsory.types.RoadType;
 
 public class Compulsory {
+   
     public void main()
     {
         Location l1 = new Location();

@@ -1,7 +1,6 @@
 package compulsory.objects;
 
 import compulsory.types.LocationType;
-import java.lang.Math;
 
 public class Location {
     
