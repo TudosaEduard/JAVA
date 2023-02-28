@@ -9,8 +9,9 @@ public class Road {
     private double length;
     private double speed;
     Location locationStart, locationEnd;
-    
-    public Road() {}
+
+    public Road() {
+    }
 
     public Road(String name, double length, double speed) {
         this.name = name;
@@ -25,6 +26,18 @@ public class Road {
         this.speed = speed;
     }
 
+    /**
+     * 
+     * @param name          Name of the Road created
+     * @param type          Type of the location, among those existing in the enum
+     *                      RoadType
+     * @param length        The length of the road calculated with euclidian
+     *                      distance
+     * @param speed         The spped limit
+     * @param locationStart The location from which the road starts
+     * @param locationEnd   The location from which the road ends
+     */
+
     public Road(String name, RoadType type, double length, double speed, Location locationStart, Location locationEnd) {
         this.name = name;
         this.type = type;
@@ -33,6 +46,8 @@ public class Road {
         this.locationStart = locationStart;
         this.locationEnd = locationEnd;
     }
+
+    // Getters and setters for Road parameters
 
     public String getName() {
         return name;
@@ -65,7 +80,7 @@ public class Road {
     public void setSpeed(double speed) {
         this.speed = speed;
     }
-    
+
     public Location getLocationStart() {
         return locationStart;
     }
@@ -82,11 +97,10 @@ public class Road {
         this.locationEnd = locationEnd;
     }
 
-
     @Override
     public String toString() {
         return "Road [name=" + name + ", type=" + type + ", length=" + length + ", speed=" + speed + ", locationStart="
                 + locationStart + ", locationEnd=" + locationEnd + "]";
     }
-    
+
 }

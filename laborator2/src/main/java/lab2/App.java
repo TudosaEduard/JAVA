@@ -9,10 +9,14 @@ import homework.Problem;
  */
 public class App 
 {
+    /**
+     * Main function of project for laboratory 2
+     * @param args
+     */
     public static void main( String[] args )
     {
         App app = new App();
-        //app.compulsory();
+        app.compulsory();
         app.homework();
     }
 

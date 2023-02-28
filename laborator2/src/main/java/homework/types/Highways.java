@@ -4,8 +4,18 @@ import homework.objects.Location;
 import homework.objects.Road;
 
 public class Highways extends Road {
-    
+
     private int oldAge;
+
+    /**
+     * 
+     * @param name          Name of the Road created
+     * @param length        The length of the road
+     * @param speed         The spped limit
+     * @param locationStart The location from which the road starts
+     * @param locationEnd   The location from which the road ends
+     * @param oldAge        The age of road
+     */
 
     public Highways(String name, double length, double speed, Location locationStart, Location locationEnd,
             int oldAge) {
@@ -25,6 +35,5 @@ public class Highways extends Road {
     public String toString() {
         return "Highways [oldAge=" + oldAge + "]";
     }
-    
-    
+
 }

@@ -5,14 +5,25 @@ public abstract class Road {
     protected double length;
     protected double speed;
     protected Location locationStart, locationEnd;
-    
-    public Road() {}
+
+    public Road() {
+    }
 
     public Road(String name, double length, double speed) {
         this.name = name;
         this.length = length;
         this.speed = speed;
     }
+
+    /**
+     * 
+     * @param name          Name of the Road created
+     * @param length        The length of the road calculated with euclidian
+     *                      distance
+     * @param speed         The spped limit
+     * @param locationStart The location from which the road starts
+     * @param locationEnd   The location from which the road ends
+     */
 
     public Road(String name, double length, double speed, Location locationStart, Location locationEnd) {
         this.name = name;
@@ -21,6 +32,11 @@ public abstract class Road {
         this.locationStart = locationStart;
         this.locationEnd = locationEnd;
     }
+
+    /**
+     * Getters and setters for Road parameters
+     * 
+     */
 
     public String getName() {
         return name;
@@ -45,7 +61,7 @@ public abstract class Road {
     public void setSpeed(double speed) {
         this.speed = speed;
     }
-    
+
     public Location getLocationStart() {
         return locationStart;
     }
@@ -68,6 +84,10 @@ public abstract class Road {
                 + locationStart + ", locationEnd=" + locationEnd + "]";
     }
 
+    /**
+     * The equals method that should not allow adding the same road twice.
+     */
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -82,15 +102,22 @@ public abstract class Road {
                 return false;
         } else if (!name.equals(other.name))
             return false;
-        if (Double.doubleToLongBits(length) != Double.doubleToLongBits(other.length) && (Double.doubleToLongBits(speed) != Double.doubleToLongBits(other.speed)))
+        if (Double.doubleToLongBits(length) != Double.doubleToLongBits(other.length)
+                && (Double.doubleToLongBits(speed) != Double.doubleToLongBits(other.speed)))
             return true;
         return true;
     }
 
-    public boolean validInstance(Road [] roads, Road newRoad)
-    {
+    /**
+     * 
+     * @param roads   The roads already created
+     * @param newRoad The new road created
+     * @return Return if a road new created is valid or not
+     */
+
+    public boolean validInstance(Road[] roads, Road newRoad) {
         for (Road road : roads) {
-            if(newRoad.equals(road))
+            if (newRoad.equals(road))
                 return false;
         }
         return true;

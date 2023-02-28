@@ -2,14 +2,19 @@ package compulsory.objects;
 
 import compulsory.types.LocationType;
 
+/**
+ * Locations objects class
+ */
+
 public class Location {
-    
+
     private String name;
     private LocationType type;
     private double x;
     private double y;
-    
-    public Location() {};
+
+    public Location() {
+    };
 
     public Location(String name, double x, double y) {
         this.name = name;
@@ -17,12 +22,25 @@ public class Location {
         this.y = y;
     }
 
+    /**
+     * 
+     * @param name Name of the location created
+     * @param type Type of the location, among those existing in the enum
+     *             LocationType
+     * @param x    The x coordinate for location positioning
+     * @param y    The y coordinate for location positioning
+     */
     public Location(String name, LocationType type, double x, double y) {
         this.name = name;
         this.type = type;
         this.x = x;
         this.y = y;
     }
+
+    /**
+     * Getters and setters for Location parameters
+     * 
+     */
 
     public String getName() {
         return name;
@@ -60,6 +78,5 @@ public class Location {
     public String toString() {
         return "Locations [name=" + name + ", type=" + type + ", x=" + x + ", y=" + y + "]";
     }
-
 
 }

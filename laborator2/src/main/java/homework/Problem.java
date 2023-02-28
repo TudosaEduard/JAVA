@@ -9,6 +9,10 @@ import homework.types.Express;
 import homework.types.GasStations;
 import homework.types.Highways;
 
+/**
+ * This is the main project for homework
+ */
+
 public class Problem {
 
     private static Location[] locations = new Location[15];
@@ -19,6 +23,12 @@ public class Problem {
     private static Location[][] twoLocations = new Location[15][2];
     private static Road[] oneRoad = new Road[15];
     private static boolean[] isUsed = new boolean[15];
+
+    /**
+     * Create new objects with different parameters, check if the parameters created
+     * are valid and
+     * determine a path between two locations with a given roads
+     */
 
     public void main() {
         String[] obj1 = { "Palatul Culturii", "Gradina Botanica", "Cinema Victoria" };
@@ -88,8 +98,16 @@ public class Problem {
 
         DFS(c1, c2);
         System.out.println(findPath);
-        printPath();
+        if (findPath == true)
+            printPath();
     }
+
+    /**
+     * This is the recursive dfs to find the path between two locations
+     * 
+     * @param l1 Current location for step x
+     * @param l2 The final location we want to reach
+     */
 
     private void DFS(Location l1, Location l2) {
         if (l1.equals(l2))
@@ -122,9 +140,9 @@ public class Problem {
         }
     }
 
-    private void printPath()
-    {
-        for(int index = oneR - 1 ; index >= 0 ; index --)
-            System.out.println("Location : " + twoLocations[index][0].getName() + " --> " + "Road : " + oneRoad[index].getName() + " --> " + "Location : " + twoLocations[index][1].getName());
+    private void printPath() {
+        for (int index = oneR - 1; index >= 0; index--)
+            System.out.println("Location : " + twoLocations[index][0].getName() + " --> " + "Road : "
+                    + oneRoad[index].getName() + " --> " + "Location : " + twoLocations[index][1].getName());
     }
 }

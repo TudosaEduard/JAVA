@@ -4,21 +4,30 @@ import homework.objects.Location;
 
 public class GasStations extends Location {
 
-    private double priceGasolin;
+    private double priceGasoline;
     private int parkingPlacesAvailable;
-  
+
+    /**
+     * 
+     * @param name                   Name of the location created
+     * @param x                      The x coordinate for location positioning
+     * @param y                      The y coordinate for location positioning
+     * @param price                  The gasoline price
+     * @param parkingPlacesAvailable Parking places available
+     */
+
     public GasStations(String name, double x, double y, double price, int parkingPlacesAvailable) {
         super(name, x, y);
-        this.priceGasolin = price;
+        this.priceGasoline = price;
         this.parkingPlacesAvailable = parkingPlacesAvailable;
     }
 
     public double getPriceGasolin() {
-        return priceGasolin;
+        return priceGasoline;
     }
 
     public void setPriceGasolin(double price) {
-        this.priceGasolin = price;
+        this.priceGasoline = price;
     }
 
     public int getParkingPlacesAvailable() {
@@ -31,8 +40,7 @@ public class GasStations extends Location {
 
     @Override
     public String toString() {
-        return "GasStations [price=" + priceGasolin + ", parkingPlacesAvailable=" + parkingPlacesAvailable + "]";
+        return "GasStations [price=" + priceGasoline + ", parkingPlacesAvailable=" + parkingPlacesAvailable + "]";
     }
 
-    
 }
