@@ -11,6 +11,7 @@ public class Bonus {
         int [][] graph = new int [n + 1][n + 1];
         for(int ii = 0 ; ii < n - 1 ; ++ii)
             graph[ii][ii + 1] = 1;
+        graph[n - 1][0] = 1;
         
         //print the matrix
         System.out.println("Cycle graph matrix is : ");
@@ -24,13 +25,12 @@ public class Bonus {
             for(int jj = 0 ; jj < n ; ++jj)
             {
                 for(int k = 0 ; k < n ; ++k)
-                    graph_2[ii][jj] = graph[ii][k] * graph[k][jj];
+                    graph_2[ii][jj] += graph[ii][k] * graph[k][jj];
             }
-
+        
         //print the matrix ^ 2
         System.out.println("Cycle graph matrix ^ 2 is : ");
         afisareMat(graph_2, n);
-
     }
     
     //Graph is a non-directed graph
