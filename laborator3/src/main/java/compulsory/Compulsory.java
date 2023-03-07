@@ -42,9 +42,13 @@ public class Compulsory {
         objects.add(c3);
 
 
-        System.out.println(objects.toString());
-        objects.sort(null);
-        System.out.println(objects.toString());
+        System.out.println(person.toString());
+        person.sort(null);
+        System.out.println(person.toString());
+
+        System.out.println(company.toString());
+        company.sort(null);
+        System.out.println(company.toString());
     }
 
 }
