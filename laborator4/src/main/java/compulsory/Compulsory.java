@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.IntStream;
 
 import compulsory.objects.Project;
 import compulsory.objects.Student;
@@ -32,7 +33,7 @@ public class Compulsory {
             listOfProjects.add(p);
         }
 
-        System.out.println(listOfStudents);
-        System.out.println(listOfProjects);
+        System.out.println(listOfStudents.toString());
+        System.out.println(listOfProjects.toString());
     }
 }
