@@ -1,6 +1,7 @@
 package lab4;
 
 import compulsory.Compulsory;
+import homework.Homework;
 
 /**
  * @
@@ -11,7 +12,8 @@ public class App
     public static void main( String[] args )
     {
         App app = new App();
-        app.compulsory();
+        //app.compulsory();
+        app.homework();
     }
 
     public void compulsory()
@@ -22,6 +24,7 @@ public class App
 
     public void homework()
     {
-
+        Homework hw = new Homework();
+        hw.main();
     }
 }
