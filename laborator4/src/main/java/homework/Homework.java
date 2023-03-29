@@ -72,6 +72,7 @@ public class Homework {
 
     public void greedyAlg(Admissible assigned) {
         prefMap = assigned.getPrefMap();
+        System.out.println(prefMap.toString());
         while (!prefMap.isEmpty()) {
             Student minStudent = null;
             int minSize = Integer.MAX_VALUE;
