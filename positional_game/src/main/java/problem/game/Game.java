@@ -15,7 +15,7 @@ public class Game {
     private String input;
     private int nrEdges = 0;
 
-    public Game(int numNodes, double probability, Strategy strategy, String commandType) {
+    public Game(int numNodes, double probability, Strategy strategy) {
         createNodes(numNodes);
         createEdges(numNodes, probability);
     }
@@ -44,9 +44,12 @@ public class Game {
         }
     }
 
-
     public List<Node> getNodes() {
         return nodes;
+    }
+
+    public List<Edge> getEdges() {
+        return edges;
     }
 
     public Node getNodeByName(String name){

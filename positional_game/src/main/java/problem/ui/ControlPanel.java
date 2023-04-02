@@ -33,7 +33,6 @@ public class ControlPanel extends JPanel {
 
     private void saveGame(ActionEvent evt) {
         frame.canvas.savePNG();
-        //frame.canvas.saveJSON();
     }
 
     private void resetGame(ActionEvent evt) {

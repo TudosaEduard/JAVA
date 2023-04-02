@@ -12,9 +12,8 @@ public class MainFrame extends JFrame {
     DrawingPanel canvas;
     List <Node> nodes;
 
-    public MainFrame(List <Node> nodes) {
+    public MainFrame() {
         super("Positional Game");
-        this.nodes = nodes;
         init();
     }
 
@@ -22,7 +21,7 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         configPanel = new ConfigPanel(this);
-        canvas = new DrawingPanel(this, nodes);
+        canvas = new DrawingPanel(this);
         controlPanel = new ControlPanel(this);
 
         add(configPanel, java.awt.BorderLayout.NORTH);
@@ -37,5 +36,12 @@ public class MainFrame extends JFrame {
         return canvas;
     }
 
+    public ConfigPanel getConfigPanel() {
+        return configPanel;
+    }
+
+    public ControlPanel getControlPanel() {
+        return controlPanel;
+    }
     
 }

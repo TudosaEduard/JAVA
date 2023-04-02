@@ -2,6 +2,7 @@ package problem.ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -18,6 +19,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import problem.game.objects.Edge;
 import problem.game.objects.Node;
 
 public class DrawingPanel extends JPanel {
@@ -25,21 +27,22 @@ public class DrawingPanel extends JPanel {
 
     final static int W = 800, H = 600;
     private int numVertices;
-    private double edgeProbability;
     private Vertex node1 = null, node2 = null;
     private String edge;
-    List<Node> nodes;
+
+    List <Node> nodes;
+    List <Edge> edges;
 
     private List<Vertex> vertices = new ArrayList<>();
     private Boolean playerTurn;
+    private Boolean newGameStarted = false;
 
     private int[] x, y;
     BufferedImage image;
     Graphics2D graphics;
 
-    public DrawingPanel(MainFrame frame, List<Node> nodes) {
+    public DrawingPanel(MainFrame frame) {
         this.frame = frame;
-        this.nodes = nodes;
         createOffscreenImage();
         initPanel();
     }
@@ -50,6 +53,9 @@ public class DrawingPanel extends JPanel {
         frame.configPanel.createButton.addMouseListener((MouseListener) new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
+                newGameStarted = true;
+                node1 = null;
+                node2 = null;
                 createBoard();
                 repaint();
             }
@@ -67,7 +73,6 @@ public class DrawingPanel extends JPanel {
 
     final void createBoard() {
         numVertices = (Integer) frame.configPanel.dotsSpinner.getValue();
-        edgeProbability = (Double) frame.configPanel.linesCombo.getSelectedItem();
         createOffscreenImage();
         createVertices();
         drawLines();
@@ -94,13 +99,21 @@ public class DrawingPanel extends JPanel {
     }
 
     private void drawLines() {
-        for (int i = 0; i < numVertices; i++) {
-            for (int j = i + 1; j < numVertices; j++) {
-                if (Math.random() < edgeProbability) {
-                    graphics.setColor(Color.BLACK);
-                    graphics.drawLine(x[i], y[i], x[j], y[j]);
+        for (Edge e : edges) {
+            graphics.setColor(Color.BLACK);
+            Node n1 = e.getNode1();
+            Node n2 = e.getNode2();
+
+            Vertex v1 = null, v2 = null;
+            for (Vertex v : vertices) {
+                if (v.getNode().equals(n1)) {
+                    v1 = v;
+                }
+                if (v.getNode().equals(n2)) {
+                    v2 = v;
                 }
             }
+            graphics.drawLine(v1.getX(), v1.getY(), v2.getX(), v2.getY());
         }
     }
 
@@ -136,6 +149,7 @@ public class DrawingPanel extends JPanel {
                             graphics.fillOval(v.getX() - 6, v.getY() - 6, 12, 12);
 
                             String color = playerTurn ? "#0000ff" : "#ff0000";
+
                             graphics.setColor(Color.decode(color));
                             graphics.drawLine(node1.getX(), node1.getY(), node2.getX(), node2.getY());
                             repaint();
@@ -143,6 +157,12 @@ public class DrawingPanel extends JPanel {
                             edge = node1.getNode().getName() + " " + node2.getNode().getName();
 
                         } else {
+
+                            if(!playerTurn)
+                                frame.configPanel.setPlayerRound("Player#1");
+                            else
+                                frame.configPanel.setPlayerRound("Player#2");
+
                             graphics.setColor(Color.WHITE);
                             graphics.fillOval(node1.getX() - 6, node1.getY() - 6, 12, 12);
                             graphics.fillOval(node2.getX() - 6, node2.getY() - 6, 12, 12);
@@ -158,15 +178,31 @@ public class DrawingPanel extends JPanel {
         });
     }
 
+    public Boolean getNewGameStarted() {
+        return newGameStarted;
+    }
+
+    public void setNewGameStarted(Boolean newGameStarted) {
+        this.newGameStarted = newGameStarted;
+    }
+
     @Override
     protected void paintComponent(Graphics graphics) {
         graphics.drawImage(image, 0, 0, this);
     }
 
+    public void setNodes(List<Node> nodes) {
+        this.nodes = nodes;
+    }
+
+    public void setEdges(List<Edge> edges) {
+        this.edges = edges;
+    }
+
     public void savePNG() {
         try {
             ImageIO.write(image, "PNG",
-                    new File("E:/Java/Teme/JAVA/laborator6/src/main/java/compulsory/game/canvas_image.png"));
+                    new File("E:/Java/Teme/JAVA/positional_game/src/main/java/problem/results/canvas_image.png"));
         } catch (IOException ex) {
             System.err.println(ex);
         }
@@ -177,15 +213,6 @@ public class DrawingPanel extends JPanel {
             image = ImageIO
                     .read(new File("E:/Java/Teme/JAVA/laborator6/src/main/java/compulsory/game/canvas_image.png"));
             repaint();
-        } catch (IOException ex) {
-            System.err.println(ex);
-        }
-    }
-
-    public void saveJSON() {
-        try {
-            ImageIO.write(image, "JSON",
-                    new File("E:/Java/Teme/JAVA/laborator6/src/main/java/compulsory/game/canvas_image.json"));
         } catch (IOException ex) {
             System.err.println(ex);
         }
@@ -211,5 +238,18 @@ public class DrawingPanel extends JPanel {
     public void winPlayer(){
         graphics.setColor(Color.WHITE);
         graphics.fillRect(0, 0, 800, 600);
+        if(!playerTurn)
+            graphics.setColor(Color.BLUE);
+        else
+            graphics.setColor(Color.RED);
+
+        if(!playerTurn)
+            frame.configPanel.setPlayerRound("Player#1");
+        else
+            frame.configPanel.setPlayerRound("Player#2");
+
+        graphics.setFont(new Font("TimesRoman", Font.PLAIN, 50));
+        graphics.drawString("Player " + (playerTurn ? "2" : "1") + " won!", 200, 300);
+        repaint();
     }
 }

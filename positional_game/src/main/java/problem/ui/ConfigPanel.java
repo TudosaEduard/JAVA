@@ -13,6 +13,7 @@ public class ConfigPanel extends JPanel{
     JSpinner dotsSpinner;
     JComboBox linesCombo;
     JButton createButton; 
+    JLabel playerRound;
 
     public ConfigPanel(MainFrame frame) {
         this.frame = frame;
@@ -20,18 +21,31 @@ public class ConfigPanel extends JPanel{
     }
 
     private void init() {
+        playerRound = new JLabel("Player#1");
         dotsLabel = new JLabel("Number of dots: ");
         linesLabel = new JLabel("Line probability: ");
         dotsSpinner = new JSpinner(new SpinnerNumberModel(6, 3, 100, 1));
         linesCombo = new JComboBox(new Double[]{0.1, 0.5, (double) 1});
         createButton = new JButton("Create new game");
 
+        add(playerRound);
         add(dotsLabel);
         add(dotsSpinner);
         add(linesLabel);
         add(linesCombo);
         add(createButton);
     }
+
+    public JSpinner getDotsSpinner() {
+        return dotsSpinner;
+    }
     
+    public JComboBox getLinesCombo() {
+        return linesCombo;
+    }
+
+    public void setPlayerRound(String player) {
+        playerRound.setText(player);
+    }
 }
 
