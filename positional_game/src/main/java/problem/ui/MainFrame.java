@@ -1,0 +1,41 @@
+package problem.ui;
+
+import java.util.List;
+
+import javax.swing.JFrame;
+
+import problem.game.objects.Node;
+
+public class MainFrame extends JFrame {
+    ConfigPanel configPanel;
+    ControlPanel controlPanel;
+    DrawingPanel canvas;
+    List <Node> nodes;
+
+    public MainFrame(List <Node> nodes) {
+        super("Positional Game");
+        this.nodes = nodes;
+        init();
+    }
+
+    private void init() {
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        configPanel = new ConfigPanel(this);
+        canvas = new DrawingPanel(this, nodes);
+        controlPanel = new ControlPanel(this);
+
+        add(configPanel, java.awt.BorderLayout.NORTH);
+        add(canvas, java.awt.BorderLayout.CENTER);
+        add(controlPanel, java.awt.BorderLayout.SOUTH);
+
+
+        pack();
+    }
+
+    public DrawingPanel getCanvas() {
+        return canvas;
+    }
+
+    
+}
