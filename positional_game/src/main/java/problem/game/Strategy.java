@@ -1,8 +1,10 @@
 package problem.game;
 
+import java.io.Serializable;
+
 import problem.game.objects.Edge;
 
-public class Strategy {
+public class Strategy implements Serializable{
     private String name;
 
     public Strategy(String name) {

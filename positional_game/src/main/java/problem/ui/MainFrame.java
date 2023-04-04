@@ -1,12 +1,13 @@
 package problem.ui;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.swing.JFrame;
 
 import problem.game.objects.Node;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements Serializable{
     ConfigPanel configPanel;
     ControlPanel controlPanel;
     DrawingPanel canvas;

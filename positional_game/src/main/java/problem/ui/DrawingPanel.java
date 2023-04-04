@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ import javax.swing.JPanel;
 import problem.game.objects.Edge;
 import problem.game.objects.Node;
 
-public class DrawingPanel extends JPanel {
+public class DrawingPanel extends JPanel{
     final MainFrame frame;
 
     final static int W = 800, H = 600;
@@ -143,12 +144,12 @@ public class DrawingPanel extends JPanel {
                             graphics.setColor(Color.GREEN);
                             graphics.fillOval(v.getX() - 6, v.getY() - 6, 12, 12);
                             repaint();
-                        } else if (node2 == null) {
+                        } else if (node2 == null && node1 != v) {
                             node2 = v;
                             graphics.setColor(Color.GREEN);
                             graphics.fillOval(v.getX() - 6, v.getY() - 6, 12, 12);
 
-                            String color = playerTurn ? "#0000ff" : "#ff0000";
+                            String color = playerTurn ? "#ff0000" : "#0000ff";
 
                             graphics.setColor(Color.decode(color));
                             graphics.drawLine(node1.getX(), node1.getY(), node2.getX(), node2.getY());
@@ -157,6 +158,15 @@ public class DrawingPanel extends JPanel {
                             edge = node1.getNode().getName() + " " + node2.getNode().getName();
 
                         } else {
+
+                            if(node2 == null)
+                            {
+                                graphics.setColor(Color.WHITE);
+                                graphics.fillOval(node1.getX() - 6, node1.getY() - 6, 12, 12);
+                                repaint();
+                                node1 = null;
+                                return;
+                            } 
 
                             if(!playerTurn)
                                 frame.configPanel.setPlayerRound("Player#1");
@@ -235,21 +245,33 @@ public class DrawingPanel extends JPanel {
         this.edge = edge;
     }
 
-    public void winPlayer(){
-        graphics.setColor(Color.WHITE);
-        graphics.fillRect(0, 0, 800, 600);
-        if(!playerTurn)
-            graphics.setColor(Color.BLUE);
-        else
-            graphics.setColor(Color.RED);
+    public void winPlayer(int win){
 
         if(!playerTurn)
             frame.configPanel.setPlayerRound("Player#1");
         else
             frame.configPanel.setPlayerRound("Player#2");
 
+
+        graphics.setColor(Color.WHITE);
+        graphics.fillRect(0, 0, 800, 600);
         graphics.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-        graphics.drawString("Player " + (playerTurn ? "2" : "1") + " won!", 200, 300);
+
+        if(win == 0)
+        {
+            graphics.setColor(Color.GREEN);
+            graphics.drawString("Draw!", 200, 300);
+        }
+        else if(win == 1)
+        {
+            graphics.setColor(Color.BLUE);
+            graphics.drawString("Player 1 won!", 200, 300);
+        }
+        else
+        {
+            graphics.setColor(Color.RED);
+            graphics.drawString("Player 2 won!", 200, 300);
+        }
         repaint();
     }
 }

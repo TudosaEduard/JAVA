@@ -1,5 +1,6 @@
 package problem.game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,13 +8,14 @@ import java.util.Scanner;
 import problem.game.objects.Edge;
 import problem.game.objects.Node;
 
-public class Game {
+public class Game implements Serializable{
     private List<Node> nodes = new ArrayList<Node>();
     private List<Edge> edges = new ArrayList<Edge>();
     private Player player1 = new Player("Player 1", "red");
     private Player player2 = new Player("Player 2", "blue");
     private String input;
     private int nrEdges = 0;
+    private int win = 0;
 
     public Game(int numNodes, double probability, Strategy strategy) {
         createNodes(numNodes);
@@ -129,12 +131,20 @@ public class Game {
     public void printResult(Strategy strategy, Boolean playerTurn, Boolean gameOver){
         if(!gameOver){
             System.out.println("Draw!");
+            win = 0;
         } else {
             if(strategy.getName().equals("Last Triangle"))
+            {
                 System.out.println("Player " + (playerTurn ? "2" : "1") + " wins!");
+                win = playerTurn ? 2 : 1;
+            }
             else
+            {
                 System.out.println("Player " + (playerTurn ? "1" : "2") + " wins!");
+                win = playerTurn ? 1 : 2;
+            }
         }
+
     }
 
     public Boolean isGameOver(Strategy strategy){
@@ -151,6 +161,10 @@ public class Game {
             }
         }
         return null;
+    }
+
+    public int getWin() {
+        return win;
     }
 
 }

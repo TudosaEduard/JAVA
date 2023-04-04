@@ -1,11 +1,12 @@
 package problem.game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import problem.game.objects.Edge;
 
-public class Player {
+public class Player implements Serializable{
     private String name;
     private String color;
     private List <Edge> edges = new ArrayList<Edge>();
@@ -43,4 +44,10 @@ public class Player {
         this.edges.add(edge);
         edge.setColor(color);
     }
+
+    @Override
+    public String toString() {
+        return "Player [name=" + name + ", color=" + color + ", edges=" + edges + "]";
+    }
+
 }

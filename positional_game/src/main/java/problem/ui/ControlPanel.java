@@ -1,14 +1,17 @@
 package problem.ui;
 import java.awt.event.ActionEvent;
+import java.io.Serializable;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class ControlPanel extends JPanel {
+public class ControlPanel extends JPanel{
     final MainFrame frame;
     JButton loadBtn = new JButton("Load");
     JButton saveBtn = new JButton("Save");
     JButton resetBtn = new JButton("Reset");
     JButton exitBtn = new JButton("Exit");
+    private Boolean isSaved = false;
 
     public ControlPanel(MainFrame frame) {
         this.frame = frame;
@@ -33,6 +36,7 @@ public class ControlPanel extends JPanel {
 
     private void saveGame(ActionEvent evt) {
         frame.canvas.savePNG();
+        isSaved = true;
     }
 
     private void resetGame(ActionEvent evt) {
@@ -43,6 +47,14 @@ public class ControlPanel extends JPanel {
 
     private void exitGame(ActionEvent evt) {
         frame.dispose();
+    }
+
+    public Boolean getIsSaved() {
+        return isSaved;
+    }
+
+    public void setIsSaved(Boolean isSaved) {
+        this.isSaved = isSaved;
     }
 }
 

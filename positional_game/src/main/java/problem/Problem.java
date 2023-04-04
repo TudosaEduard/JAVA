@@ -1,5 +1,9 @@
 package problem;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Scanner;
 
 import javax.lang.model.util.ElementScanner14;
@@ -10,7 +14,7 @@ import problem.game.objects.Edge;
 import problem.ui.DrawingPanel;
 import problem.ui.MainFrame;
 
-public class Problem {
+public class Problem implements Serializable{
 
     private Scanner scanner;
     private final String commandType = "gui";
@@ -104,6 +108,17 @@ public class Problem {
                     game.printEdges();
                     canvas.setEdge(null);
                 }
+
+                if(mf.getControlPanel().getIsSaved() == true)
+                {
+                    try (FileOutputStream fileOut = new FileOutputStream("E:/Java/Teme/JAVA/positional_game/src/main/java/problem/results/game.ser");
+                        ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+                        out.writeObject(game);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    mf.getControlPanel().setIsSaved(false);
+                }
             }
 
             if(gameStarted == false){
@@ -124,7 +139,8 @@ public class Problem {
         }
         else{
             canvas.setPlayerTurn(playerTurn);
-            canvas.winPlayer();
+            int win = game.getWin();
+            canvas.winPlayer(win);
         }
 
     }

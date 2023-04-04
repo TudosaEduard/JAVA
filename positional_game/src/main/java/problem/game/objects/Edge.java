@@ -1,12 +1,14 @@
 package problem.game.objects;
 
-public class Edge {
+import java.io.Serializable;
+
+public class Edge implements Serializable{
     private String name;
     private Node node1;
     private Node node2;
     private String color;
 
-    public Edge(String name, Node node1, Node node2, String color) {
+    public Edge(String name, Node node1, Node node2, String color){
         this.name = name;
         this.node1 = node1;
         this.node2 = node2;
